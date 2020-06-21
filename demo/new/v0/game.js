@@ -41,7 +41,7 @@ class Game{
 
 		const options = {
 			assets:[
-				`${this.assetsPath}fbx/env-1.fbx`
+				`${this.assetsPath}fbx/env-3.fbx`
 			],
 			oncomplete: function(){
 				game.init();
@@ -162,18 +162,18 @@ class Game{
 	loadEnvironment(loader){
 		const game = this;
 
-		loader.load( `${this.assetsPath}fbx/env-1.fbx`, function ( object ) {
+		loader.load( `${this.assetsPath}fbx/env-3.fbx`, function ( object ) {
 			game.scene.add(object);
 
-			object.receiveShadow = true;
+			object.receiveShadow = false;
 			object.scale.set(0.8, 0.8, 0.8);
 			object.name = "Environment";
 
 			object.traverse( function ( child ) {
 				if ( child.isMesh ) {
 					if (child.name.includes('main')){
-						child.castShadow = true;
-						child.receiveShadow = true;
+						child.castShadow = false;
+						child.receiveShadow = false;
 					}else if (child.name.includes('proxy')){
 						child.material.visible = false;
 					}
@@ -228,7 +228,7 @@ class Game{
 		front.position.set(112, 100, 200);
 		front.parent = this.player.object;
 		const back = new THREE.Object3D();
-		back.position.set(0, 100, -250);
+		back.position.set(100, 140, -300);
 		back.parent = this.player.object;
 		const wide = new THREE.Object3D();
 		wide.position.set(178, 139, 465);
