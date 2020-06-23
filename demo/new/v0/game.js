@@ -1,7 +1,7 @@
 class Game{
 	constructor(){
 		if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
-
+//1
 		this.modes = Object.freeze({
 			NONE:   Symbol("none"),
 			PRELOAD: Symbol("preload"),
@@ -165,15 +165,15 @@ class Game{
 		loader.load( `${this.assetsPath}fbx/env-3.fbx`, function ( object ) {
 			game.scene.add(object);
 
-			object.receiveShadow = false;
+			object.receiveShadow = true;
 			object.scale.set(0.8, 0.8, 0.8);
 			object.name = "Environment";
 
 			object.traverse( function ( child ) {
 				if ( child.isMesh ) {
 					if (child.name.includes('main')){
-						child.castShadow = false;
-						child.receiveShadow = false;
+						child.castShadow = true;
+						child.receiveShadow = true;
 					}else if (child.name.includes('proxy')){
 						child.material.visible = false;
 					}
@@ -244,7 +244,7 @@ class Game{
 		game.cameraFade = 1;
 		setTimeout( function(){
 			game.activeCamera = game.player.cameras.back;
-			game.cameraFade = 0.01;
+			game.cameraFade = 0.1;
 			setTimeout(function(){ game.cameraFade = 0.1; }, 1500);
 		}, 2000)
 	}
